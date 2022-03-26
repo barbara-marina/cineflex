@@ -9,4 +9,8 @@ export const Container = styled.header`
     align-items: center;
     color: #E8833A;
     font-size: 34px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 `;
