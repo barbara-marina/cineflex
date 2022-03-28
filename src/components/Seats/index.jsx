@@ -1,16 +1,17 @@
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Container, ContainerSeats, Seat} from "./style";
 import axios from "axios";
 import Title from "./../Title/index";
 import Footer from "./../Footer/index";
 
-export default function Seats() {
+export default function Seats({attDatas}) {
     const {idSession} = useParams();
-    const {navigate} = useNavigate();
+    const navigate = useNavigate();
     const [seats, setSeats] = useState({});
     const [array, setArray] = useState([]);
+    const [newArray, setNewArray] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCPF] = useState("");
 
@@ -24,15 +25,17 @@ export default function Seats() {
         return <div>carregando...</div>
     }
 
-    function teste(id, isAvailable) {
+    function teste(id, isAvailable, seat) {
         if (!isAvailable){
             alert("Esse assento não está disponível!");
             return;
         }
         if (array.includes(id)){
             setArray(array.filter((a) => a===id ? false : true));
+            setNewArray(newArray.filter((a) => a===seat ? false : true));
         } else {
             setArray([...array, id]);
+            setNewArray([...newArray, seat]);
         }
 
     } //trocar por early return depois
@@ -53,8 +56,10 @@ export default function Seats() {
         }
         
         const request = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", data);
-        request.then(navigate("/sucesso"));
-        request.catch(response => console.log("Error", response));
+        request.then(() => {navigate("/sucesso");
+                           attDatas(seats.movie.title, seats.day.weekday, seats.name, name, cpf, newArray);
+                    });
+        request.catch(response => console.log("Error:", response));
         
     }
 
@@ -63,7 +68,7 @@ export default function Seats() {
             <Title text="Selecione o(s) assento(s)" sucess={false}/>
             <ContainerSeats>
                 {seats.seats.map(({id, name: seat, isAvailable}) => 
-                    <Seat key={id} isAvailable={isAvailable} isSelected={array.includes(id)} onClick={() => teste(id, isAvailable)}>{seat}</Seat>
+                    <Seat key={id} isAvailable={isAvailable} isSelected={array.includes(id)} onClick={() => teste(id, isAvailable, seat)}>{seat}</Seat>
                 )}
                 <section>
                     <article>
