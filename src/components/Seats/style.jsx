@@ -6,53 +6,6 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 11px 30px;
-
-    form {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 42px 24px 120px 24px;;
-        gap: 5px;
-        
-        label{
-            width: 100%;
-            font-size: 18px;
-            color: #293845;
-        }
-
-        input {
-            width: 100%;
-            height: 51px;
-            background: #FFFFFF;
-            border: 1px solid #D5D5D5;
-            box-sizing: border-box;
-            border-radius: 3px;
-            padding: 0 18px;
-
-            &::placeholder {
-                font-size: 18px;
-                color: #AFAFAF;
-                font-style: italic;
-            }
-        }
-
-        button {
-            width: 225px;
-            height: 42px;
-            font-size: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #FFFFFF;
-            background: #E8833A;
-            border: none;
-            border-radius: 3px;
-            margin: 57px 0 30px 0;
-            cursor: pointer;
-        }
-    }
 `;
 export const ContainerSeats = styled.div`
     width: 100vw;

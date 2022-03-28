@@ -4,7 +4,7 @@ import { Container, DataTitle, Data, Button } from "./style";
 import Loading from "../Loaging";
 
 export default function Sucess({buyDatas: { title, date, showtime, nameBuyer,
-                                            cpf, seats}, attDatas}) {
+                                            cpf, seats}, updateDatas}) {
     if (!seats) {
         return <Loading/>
     }
@@ -25,7 +25,7 @@ export default function Sucess({buyDatas: { title, date, showtime, nameBuyer,
             <Data>CPF: {cpf.slice(0,3)}.{cpf.slice(3,6)}.{cpf.slice(6,9)}-{cpf.slice(9,11)}</Data>
             
             <Link to="/">
-                <Button onClick={() => attDatas('','','', '', '', [])}>Voltar para Home</Button>
+                <Button onClick={() => updateDatas('','','', '', '', [])}>Voltar para Home</Button>
             </Link>
         </Container>
     );

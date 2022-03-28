@@ -9,7 +9,8 @@ import "./../../assets/style/reset.css";
 
 export default function App () {
     const [buyDatas, setBuyDatas] = useState({});
-    function attDatas(title, date, showtime, nameBuyer, cpf, seats) {
+    
+    function updateDatas(title, date, showtime, nameBuyer, cpf, seats) {
         const datas = {title: title, date: date,
                         showtime: showtime, nameBuyer: nameBuyer,
                         cpf: cpf, seats: seats};
@@ -19,14 +20,15 @@ export default function App () {
         }
         setBuyDatas(datas);
     }
+
     return (
         <BrowserRouter>
             <Header />  
             <Routes>
                 <Route path="/" element={<Movies/>} />
                 <Route path="/sessoes/:idMovie" element={<Sessions/>} />
-                <Route path="/assentos/:idSession" element={<Seats attDatas={attDatas}/>} />
-                <Route path="/sucesso" element={<Sucess buyDatas={buyDatas} attDatas={attDatas}/>} />
+                <Route path="/assentos/:idSession" element={<Seats updateDatas={updateDatas}/>} />
+                <Route path="/sucesso" element={<Sucess buyDatas={buyDatas} updateDatas={updateDatas}/>} />
             </Routes>
         </BrowserRouter>
     );
