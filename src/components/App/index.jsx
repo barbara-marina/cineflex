@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../Header/index";
 import Movies from "../Movies/index";
@@ -5,18 +6,14 @@ import Sessions from "../Sessions/index";
 import Seats from "../Seats/index";
 import Sucess from "../Sucess/index";
 import "./../../assets/style/reset.css";
-import { useState } from "react";
 
 export default function App () {
     const [buyDatas, setBuyDatas] = useState({});
-    function attDatas(title, weekday, showtime, nameBuyer, cpf, seats) {
-        const datas = {title: title,
-                        weekday: weekday,
-                        showtime: showtime,
-                        nameBuyer: nameBuyer,
-                        cpf: cpf,
-                        seats: seats};
-        if(title==="") {
+    function attDatas(title, date, showtime, nameBuyer, cpf, seats) {
+        const datas = {title: title, date: date,
+                        showtime: showtime, nameBuyer: nameBuyer,
+                        cpf: cpf, seats: seats};
+        if (title==="") {
             setBuyDatas({});
             return;
         }
@@ -32,6 +29,5 @@ export default function App () {
                 <Route path="/sucesso" element={<Sucess buyDatas={buyDatas} attDatas={attDatas}/>} />
             </Routes>
         </BrowserRouter>
-    
     );
 }

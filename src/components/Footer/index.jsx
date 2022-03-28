@@ -1,4 +1,4 @@
-import { Container, Movie, Image, Text, ContainerMovie } from "./style"; 
+import { Container, Movie, Image, Text, Data } from "./style"; 
 
 export default function Footer({movie:{posterURL, title}, day:{weekday}, name}) {
     return (
@@ -6,10 +6,10 @@ export default function Footer({movie:{posterURL, title}, day:{weekday}, name}) 
             <Movie>
                 <Image src={posterURL}/>
             </Movie>
-            <ContainerMovie>
+            <Data>
                 <Text>{title}</Text>
                 {weekday!=="" && <Text>{weekday} - {name}</Text>}
-            </ContainerMovie>
+            </Data>
         </Container>
     );
 }

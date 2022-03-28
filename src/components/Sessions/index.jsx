@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, Fragment } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { Container, Header, Showtimes, Showtime } from "./style"; 
 import Title from "../Title/index";
 import Footer from "../Footer/index";
-import { Fragment } from "react/cjs/react.production.min";
+import Loading from "../Loaging";
 
 export default function Sessions() {
     const {idMovie} = useParams();
@@ -17,10 +16,15 @@ export default function Sessions() {
         request.catch(response => console.log(response));
     }, [idMovie]);
 
+    if (!movie.days){
+        return <Loading />;
+    }
+
     return (
         <Container>
             <Title text="Selecione o horário" sucess={false}/>
-            {movie.days?.map(({id:idDays, weekday, date, showtimes}) => 
+            
+            {movie.days.map(({id:idDays, weekday, date, showtimes}) => 
                 <Fragment key={idDays}>
                     <Header key={idDays}>{weekday} - {date}</Header>
                     <Showtimes>

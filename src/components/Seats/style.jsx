@@ -98,6 +98,6 @@ export const Seat = styled.div`
     align-items: center;
     font-size: 11px;
     text-align: center;
-    cursor: pointer;
     pointer-events: ${props => props.legend && "none"};
+    cursor: pointer;
 `;
