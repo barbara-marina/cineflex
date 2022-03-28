@@ -19,7 +19,6 @@ export const Showtimes = styled.div`
     justify-content: flex-start;
     margin: 0 24px 22px 24px;
     gap: 8px;
-
 `;
 export const Showtime = styled.div`
     font-size: 18px;

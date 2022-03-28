@@ -11,14 +11,14 @@ export default function Movies() {
         const request = axios.get('https://mock-api.driven.com.br/api/v5/cineflex/movies');
         request.then(response => setMovies(response.data));
         request.catch(response => console.log(response));
-    });
+    }, []);
 
     return (
         <Container>
             <Title text="Selecione o filme" sucess={false}/>
             {movies.map(({id:idMovie, title, posterURL}) => 
-                <Link to={`/sessoes/${idMovie}`}>
-                    <Movie id={idMovie} key={idMovie}>
+                <Link to={`/sessoes/${idMovie}`} key={idMovie}>
+                    <Movie id={idMovie}>
                         <Image src={posterURL} alt={title}/>
                     </Movie>
                 </Link>

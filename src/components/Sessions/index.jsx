@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Container, Header, Showtimes, Showtime } from "./style"; 
 import Title from "../Title/index";
+import Footer from "../Footer/index";
+import { Fragment } from "react/cjs/react.production.min";
 
 export default function Sessions() {
     const {idMovie} = useParams();
-    const [sessions, setSessions] = useState([]);
+    const [movie, setMovie] = useState({});
     
     useEffect(() => {
         const request = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`);
-        request.then(response => setSessions(response.data.days));
+        request.then(response => setMovie(response.data));
         request.catch(response => console.log(response));
-    });
+    }, [idMovie]);
 
     return (
         <Container>
             <Title text="Selecione o horário" sucess={false}/>
-            {sessions.map(({id:idDays, weekday, date, showtimes}) => 
-                <>
+            {movie.days?.map(({id:idDays, weekday, date, showtimes}) => 
+                <Fragment key={idDays}>
                     <Header key={idDays}>{weekday} - {date}</Header>
                     <Showtimes>
-                        {showtimes.map(({name, id: idSessions}) =>
-                            <Showtime key={idSessions}>{name}</Showtime>
+                        {showtimes.map(({name, id: idSession}) =>
+                            <Link to={`/assentos/${idSession}`} key={idSession}>
+                                <Showtime>{name}</Showtime>
+                            </Link>
                         )}
                     </Showtimes>
-                </>
+                </Fragment>
             )}
+            <Footer movie={movie} day={{weekday:""}} name="" />
         </Container>
     );
 }
