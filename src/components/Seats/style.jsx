@@ -50,6 +50,7 @@ export const Container = styled.div`
             border: none;
             border-radius: 3px;
             margin: 57px 0 30px 0;
+            cursor: pointer;
         }
     }
 `;
@@ -98,4 +99,5 @@ export const Seat = styled.div`
     font-size: 11px;
     text-align: center;
     cursor: pointer;
+    pointer-events: ${props => props.legend && "none"};
 `;
