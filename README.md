@@ -1,2 +1,2 @@
 # Cineflex
-### Acesso: https://cineflex-brown.vercel.app/
+### Acesso: cineflex-six-zeta.vercel.app
